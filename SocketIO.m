@@ -77,6 +77,7 @@ NSString* const SocketIOException = @"SocketIOException";
             isConnecting = _isConnecting, 
             useSecure = _useSecure,
             cookies = _cookies,
+            headers = _headers,
             delegate = _delegate,
             heartbeatTimeout = _heartbeatTimeout,
             returnAllDataFromAck = _returnAllDataFromAck;
@@ -151,6 +152,10 @@ NSString* const SocketIOException = @"SocketIOException";
             NSDictionary *headers = [NSHTTPCookie requestHeaderFieldsWithCookies:_cookies];
             [request setAllHTTPHeaderFields:headers];
         }
+        
+        [self.headers enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            [request setValue:obj forHTTPHeaderField:key];
+        }];
         
         [request setHTTPShouldHandleCookies:YES];
         
