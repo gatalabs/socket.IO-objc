@@ -22,7 +22,7 @@
 #import "SocketIOPacket.h"
 #import "SocketIOJSONSerialization.h"
 
-#ifdef DEBUG
+#ifdef SOCKET_IO_DEBUG
 #define DEBUG_LOGS 1
 #define DEBUG_CERTIFICATE 1
 #else
